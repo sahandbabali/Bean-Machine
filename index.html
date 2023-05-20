@@ -50,8 +50,45 @@
         <div class="col-lg-3 col-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Overview</h5>
-              <ul class="list-group">
+              <!-- <h5 class="card-title">Overview</h5> -->
+
+              <form action="#" class="">
+                <div class="mb-3">
+                  <label for="marblesizeinput" class="form-label"
+                    >Marble size</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="marblesizeinput"
+                    aria-describedby="emailHelp"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="marblefrictioninput" class="form-label"
+                    >Marble friction</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="marblefrictioninput"
+                    aria-describedby="emailHelp"
+                    step="0.1"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="gravityinput" class="form-label">Gravity</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="gravityinput"
+                    aria-describedby="emailHelp"
+                    step="0.1"
+                  />
+                </div>
+              </form>
+
+              <ul class="list-group mt-5">
                 <li class="list-group-item">
                   Marble count: <span id="marblecount">0</span>
                 </li>
@@ -59,6 +96,7 @@
                   Peg count: <span id="pegcount">0</span>
                 </li>
               </ul>
+
               <div class="d-grid gap-2 mt-5">
                 <button id="resetbutton" class="btn btn-primary" type="button">
                   Reset

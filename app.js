@@ -1,6 +1,31 @@
 let canvasbox = document.getElementById("canvasbox")
 let marblecount = document.getElementById("marblecount")
 let pegcount = document.getElementById("pegcount")
+let marblesizeinput = document.getElementById("marblesizeinput")
+marblesizeinput.addEventListener("change", function (e) {
+    console.log("marble size changed")
+
+    marblesize = e.target.value
+})
+
+let marblefrictioninput = document.getElementById("marblefrictioninput")
+marblesizeinput.addEventListener("change", function (e) {
+    console.log("marble friction changed")
+
+    marblefriction = e.target.value
+})
+
+
+let gravityinput = document.getElementById("gravityinput")
+marblesizeinput.addEventListener("change", function (e) {
+    console.log("gravity changed")
+
+    gravity = e.target.value
+})
+
+
+
+
 
 let resetbutton = document.getElementById("resetbutton").addEventListener("click", function (e) {
     // delet all the marbles
@@ -18,6 +43,7 @@ let marblesize = 13
 let marblefriction = 0.1
 let pegfriction = 0.1
 let dividerthickness = 20
+let gravity = 1
 let engine;
 let world;
 
@@ -33,6 +59,10 @@ let pegs = []
 let obstacles = []
 
 function setup() {
+
+    marblesizeinput.value = marblesize
+    marblefrictioninput.value = marblefriction
+    gravityinput.value = gravity
     // 800 / 3 = 267
     // 267 * 2 = 534
     let canvas = createCanvas(width, height);
@@ -40,7 +70,7 @@ function setup() {
 
     engine = Matter.Engine.create();
     world = engine.world;
-    world.gravity.y = 1
+    world.gravity.y = gravity
 
     // Create the walls
     createthewalls()
