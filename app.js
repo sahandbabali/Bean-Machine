@@ -1,6 +1,31 @@
 let canvasbox = document.getElementById("canvasbox")
 let marblecount = document.getElementById("marblecount")
 let pegcount = document.getElementById("pegcount")
+
+let width = 932
+let height = 801
+let marblesize = 13
+let marblefriction = 0.1
+let pegfriction = 0.1
+let dividerthickness = 20
+let gravity = 1
+let engine;
+let world;
+let paused = false
+
+let floor;
+let roof
+let leftwall
+let rightwall
+
+
+let tempboxes = []
+let dividers = []
+let pegs = []
+let obstacles = []
+
+
+
 let marblesizeinput = document.getElementById("marblesizeinput")
 marblesizeinput.addEventListener("change", function (e) {
     console.log("marble size changed")
@@ -24,9 +49,6 @@ marblesizeinput.addEventListener("change", function (e) {
 })
 
 
-
-
-
 let resetbutton = document.getElementById("resetbutton").addEventListener("click", function (e) {
     // delet all the marbles
 
@@ -37,26 +59,32 @@ let resetbutton = document.getElementById("resetbutton").addEventListener("click
     marblecount.innerText = 0
 
 })
-let width = 932
-let height = 801
-let marblesize = 13
-let marblefriction = 0.1
-let pegfriction = 0.1
-let dividerthickness = 20
-let gravity = 1
-let engine;
-let world;
 
-let floor;
-let roof
-let leftwall
-let rightwall
+let pausebutton = document.getElementById("pausebutton")
+pausebutton.addEventListener("click", function (e) {
+    console.log("pause button pressed")
+
+    if (paused == false) {
+        tempboxes.forEach(element => {
+            element.isStatic = true
+        });
+        pausebutton.innerText = "Resume"
+        paused = true
+    }
+
+    else {
+        tempboxes.forEach(element => {
+            element.isStatic = false
+        });
+        pausebutton.innerText = "Pasue"
+        paused = false
+    }
 
 
-let tempboxes = []
-let dividers = []
-let pegs = []
-let obstacles = []
+})
+
+
+
 
 function setup() {
 
