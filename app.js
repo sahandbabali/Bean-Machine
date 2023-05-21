@@ -2,9 +2,9 @@ let canvasbox = document.getElementById("canvasbox")
 let marblecount = document.getElementById("marblecount")
 let pegcount = document.getElementById("pegcount")
 
-let width = 932
+let width = 966
 let height = 801
-let marblesize = 13
+let marblesize = 12
 let marblefriction = 0.1
 let pegfriction = 0.1
 let dividerthickness = 20
@@ -12,6 +12,10 @@ let gravity = 1
 let engine;
 let world;
 let paused = false
+
+let mean = width / 2; // Mean of the bell curve
+let stdDev = 10; // Standard deviation of the bell curve
+
 
 let floor;
 let roof
@@ -116,7 +120,7 @@ function draw() {
     // Update the engine
     Matter.Engine.update(engine);
 
-    background(220);
+    background(256);
     fill(0);
 
     // lines
@@ -177,6 +181,24 @@ function draw() {
         pop();
     }
 
+
+    // draw the bell curve
+    stroke(150);
+    strokeWeight(3)
+    noFill();
+    beginShape();
+    for (let x = 0; x < width; x++) {
+        let y = 5000 * bellCurve(x);
+        vertex(x, height - y);
+    }
+    endShape();
+
+}
+
+// Function to calculate the value of the bell curve at a given x-coordinate
+function bellCurve(x) {
+    let exponent = -0.002 * ((x - mean) / stdDev) ** 2;
+    return (1 / (stdDev * sqrt(TWO_PI))) * exp(exponent);
 }
 
 
